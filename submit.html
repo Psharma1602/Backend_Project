@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Assignment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Submit Assignment</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="assignments.html">Assignments</a>
+    </nav>
+  </header>
+  <main>
+    <form id="submissionForm" enctype="multipart/form-data">
+      <input type="hidden" id="assignmentId">
+      <label for="file">Upload File:</label>
+      <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" required>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+  <script>
+    // Get assignmentId from URL query param
+    const params = new URLSearchParams(window.location.search);
+    const assignmentId = params.get("assignmentId");
+    document.getElementById("assignmentId").value = assignmentId;
+
+    document.getElementById("submissionForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login first!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const fileInput = document.getElementById("file");
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+      formData.append("assignment_id", assignmentId);
+
+      try {
+        const res = await fetch("http://localhost:3000/api/submissions", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${token}` },
+          body: formData
+        });
+        const data = await res.json();
+        alert(data.message || "Submitted successfully!");
+      } catch (err) {
+        console.error(err);
+        alert("Submission failed!");
+      }
+    });
+  </script>
+</body>
+</html>

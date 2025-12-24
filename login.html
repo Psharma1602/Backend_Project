@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | SubmitHub</title>
+  <style>
+    :root {
+      --primary: #0b2cff;
+      --accent: #ffb703;
+      --bg: #f6f8fc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    
+    body {
+      background: var(--bg);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .auth-card {
+      display: flex;
+      width: 900px;
+      height: 550px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    /* Left Side Branding */
+    .auth-info {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, #1b5cff 100%);
+      color: white;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .auth-info h1 { font-size: 32px; margin-bottom: 20px; }
+    .auth-info span { color: var(--accent); }
+    .auth-info p { opacity: 0.8; line-height: 1.6; }
+
+    /* Right Side Form */
+    .auth-form {
+      flex: 1.2;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .auth-form h2 { color: var(--primary); margin-bottom: 10px; }
+    .auth-form p { color: #666; margin-bottom: 30px; font-size: 14px; }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover { background: #001edb; transform: translateY(-2px); }
+
+    .switch-link { text-align: center; margin-top: 20px; font-size: 14px; color: #666; }
+    .switch-link a { color: var(--primary); text-decoration: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div class="auth-card">
+    <div class="auth-info">
+      <h1>Submit<span>Hub</span></h1>
+      <p>The most trusted School Management Software for tracking assignments and student progress.</p>
+    </div>
+    
+    <div class="auth-form">
+      <h2>Welcome Back</h2>
+      <p>Enter your credentials to access your dashboard.</p>
+      
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Log In</button>
+      </form>
+      
+      <p id="loginMessage" style="text-align:center; margin-top:10px;"></p>
+      
+      <div class="switch-link">
+        Don't have an account? <a href="register.html">Register Now</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
